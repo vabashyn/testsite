@@ -56,8 +56,8 @@ function custom_posts()
 }
 
 
-function custom_ajax_form_send()
-{
+function custom_ajax_form_send() {
+
 $updated_post_arr = array(
     'ID'		=> 14668,
     'post_title'    => 'Новый вааFss ',
@@ -65,19 +65,23 @@ $updated_post_arr = array(
 
     wp_insert_post( $updated_post_arr );
 
-    if (isset($_POST['name'])) {
+    if ( isset($_POST['name']) ) {
+        $name = trim(strip_tags($_POST['name']));
         $post_id =  wp_insert_post( $updated_post_arr );
         update_post_meta($post_id,'name',$_POST['name']);
     }
     if (isset($_POST['email'])) {
+        $name = trim(strip_tags($_POST['email']));
         $post_id =  wp_insert_post( $updated_post_arr );
         update_post_meta($post_id,'email',$_POST['email']);
     }
     if (isset($_POST['tel'])) {
+        $name = trim(strip_tags($_POST['tel']));
         $post_id =  wp_insert_post( $updated_post_arr );
         update_post_meta($post_id,'tel',$_POST['tel']);
     }
     if (isset($_POST['sends'])) {
+        $name = trim(strip_tags($_POST['sends']));
         $post_id =  wp_insert_post( $updated_post_arr );
         update_post_meta($post_id,'text',$_POST['sends']);
     }
