@@ -30,6 +30,7 @@
 <h2><strong>Email:</strong> <?php the_field('email'); ?></h2>
 <h2><strong>Tel:</strong> <?php the_field('tel'); ?></h2>
 <h2><strong>Text:</strong> <?php the_field('text'); ?></h2>
+<?php custom_ajax_form_send(); ?>
 </body>
 </html>
 

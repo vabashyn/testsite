@@ -55,73 +55,32 @@ function custom_posts()
 
 }
 
+
 function custom_ajax_form_send()
 {
-    if (!wp_verify_nonce($_POST['nonce'], 'forCustomAjax')) {
-        header("HTTP/1.0 404 Not Found");
-        exit;
-    }
+$updated_post_arr = array(
+    'ID'		=> 14668,
+    'post_title'    => 'Новый вааFss ',
+);
 
-    parse_str($_POST['post'], $post_data);
+    wp_insert_post( $updated_post_arr );
 
-    $content = '';
-    if (isset($post_data['name'])) {
-        $name = trim(strip_tags($post_data['name']));
-        $content .= "<p>Имя: {$name}</p>";
+    if (isset($_POST['name'])) {
+        $post_id =  wp_insert_post( $updated_post_arr );
+        update_post_meta($post_id,'name',$_POST['name']);
     }
-    if (isset($post_data['email'])) {
-        $email = trim(strip_tags($post_data['email']));
-        $content .= "<p>E-mail: {$email}</p>";
+    if (isset($_POST['email'])) {
+        $post_id =  wp_insert_post( $updated_post_arr );
+        update_post_meta($post_id,'email',$_POST['email']);
     }
-    if (isset($post_data['tel'])) {
-        $phone = trim(strip_tags($post_data['tel']));
-        $content .= "<p>Телефон: +{$phone}</p>";
+    if (isset($_POST['tel'])) {
+        $post_id =  wp_insert_post( $updated_post_arr );
+        update_post_meta($post_id,'tel',$_POST['tel']);
     }
-    if (isset($post_data['sends'])) {
-        $text = trim(strip_tags($post_data['sends']));
-        $content .= "<p>Сообщение:</p>" . wpautop($text);
+    if (isset($_POST['sends'])) {
+        $post_id =  wp_insert_post( $updated_post_arr );
+        update_post_meta($post_id,'text',$_POST['sends']);
     }
 
     exit();
 }
-
-
-
-
-
-
-
-
-
-
-/*$post_id = 43;
-
- 'id' => 43,
-    'name' => $_POST['name'],
-    'email' => $_POST['email'],
-    'tel' => $_POST['tel'],
-    'text' => $_POST['sends'],
-$meta_key = [
-
-    0 => 'name',
-    1 => 'email',
-    2 => 'tel',
-    3 => 'text'
-];
-
-$meta_value = [
-
-    'name' => $_POST['name'],
-    'email' => $_POST['email'],
-    'tel' => $_POST['tel'],
-    'text' => $_POST['text'],
-];
-
-$addname = update_post_meta($post_id, $meta_key[0], $meta_value['name'], $unique);
-$addemail = update_post_meta($post_id, $meta_key[1], $meta_value['email'], $unique);
-$addtel = update_post_meta($post_id, $meta_key[2], $meta_value['tel'], $unique);
-$addtext = update_post_meta($post_id, $meta_key[3], $meta_value['text'], $unique);
-*/
-
-
-
